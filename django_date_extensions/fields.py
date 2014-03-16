@@ -7,6 +7,7 @@ from django.db import models
 from django import forms
 from django.forms import ValidationError
 from django.utils import dateformat
+from django.utils.six import with_metaclass
 
 
 class ApproximateDate(object):
@@ -103,7 +104,7 @@ class ApproximateDate(object):
 ansi_date_re = re.compile(r'^\d{4}-\d{1,2}-\d{1,2}$')
 
 
-class ApproximateDateField(models.CharField):
+class ApproximateDateField(with_metaclass(models.SubfieldBase, models.CharField)):
     """A model field to store ApproximateDate objects in the database
        (as a CharField because MySQLdb intercepts dates from the
        database and forces them to be datetime.date()s."""
