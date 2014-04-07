@@ -7,9 +7,11 @@ from django.db import models
 from django import forms
 from django.forms import ValidationError
 from django.utils import dateformat
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.six import with_metaclass
 
 
+@python_2_unicode_compatible
 class ApproximateDate(object):
     """A date object that accepts 0 for month or day to mean we don't
        know when it is within that month/year."""
